@@ -367,7 +367,19 @@ Post = ghostBookshelf.Model.extend({
     },
 
     tags: function tags() {
-        return this.belongsToMany('Tag').withPivot('sort_order').query('orderBy', 'sort_order', 'ASC');
+        return this
+            .belongsToMany('Tag')
+            .query('where', 'name', 'not like', 'Rubric:%')
+            .withPivot('sort_order')
+            .query('orderBy', 'sort_order', 'ASC');
+    },
+
+    rubrics: function rubrics() {
+        return this
+            .belongsToMany('Tag')
+            .query('where', 'name', 'like', 'Rubric:%')
+            .withPivot('sort_order')
+            .query('orderBy', 'sort_order', 'ASC');
     },
 
     fields: function fields() {

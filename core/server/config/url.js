@@ -177,7 +177,13 @@ function urlFor(context, data, absolute) {
             urlPath = data.post.url;
             secure = data.secure;
         } else if (context === 'tag' && data.tag) {
-            urlPath = urlJoin('/', ghostConfig.routeKeywords.tag, data.tag.slug, '/');
+            var slugs = data.tag.slug.split('-');
+            var type = slugs[0];
+            if (type === 'rubric') {
+                slugs.shift();
+                var slug = slugs.join('-');
+                urlPath = urlJoin('/', ghostConfig.routeKeywords.rubric, slug, '/');
+            } else urlPath = urlJoin('/', ghostConfig.routeKeywords.tag, data.tag.slug, '/');
             secure = data.tag.secure;
         } else if (context === 'author' && data.author) {
             urlPath = urlJoin('/', ghostConfig.routeKeywords.author, data.author.slug, '/');

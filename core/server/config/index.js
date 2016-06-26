@@ -192,6 +192,7 @@ ConfigManager.prototype.set = function (config) {
             page: 'page',
             preview: 'p',
             private: 'private',
+            rubric: 'rubric',
             subscribe: 'subscribe'
         },
         internalApps: ['private-blogging', 'subscribers'],

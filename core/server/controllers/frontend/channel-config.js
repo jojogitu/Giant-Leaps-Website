@@ -25,6 +25,22 @@ channelConfig = function channelConfig() {
             slugTemplate: true,
             editRedirect: '/ghost/settings/tags/:slug/'
         },
+        rubric: {
+            name: 'rubric',
+            route: '/' + config.routeKeywords.rubric + '/:slug/',
+            postOptions: {
+                filter: 'tags:\'rubric-%s\''
+            },
+            data: {
+                tag: {
+                    type: 'read',
+                    resource: 'tags',
+                    options: {slug: 'rubric-%s'}
+                }
+            },
+            slugTemplate: true,
+            editRedirect: '/ghost/settings/tags/rubric-:slug/'
+        },
         author: {
             name: 'author',
             route: '/' + config.routeKeywords.author + '/:slug/',
