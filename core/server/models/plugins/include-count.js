@@ -23,6 +23,22 @@ module.exports = function (Bookshelf) {
                 });
             }
         },
+        rubrics: {
+            posts: function addPostCountToTags(model) {
+                model.query('columns', 'rubrics.*', function (qb) {
+                    qb.count('posts.id')
+                        .from('posts')
+                        .whereRaw('posts.rubric_id = rubrics.id')
+                        .as('count__posts');
+
+                    if (model.isPublicContext()) {
+                        // @TODO use the filter behavior for posts
+                        qb.andWhere('posts.page', '=', false);
+                        qb.andWhere('posts.status', '=', 'published');
+                    }
+                });
+            }
+        },
         users: {
             posts: function addPostCountToTags(model) {
                 model.query('columns', 'users.*', function (qb) {

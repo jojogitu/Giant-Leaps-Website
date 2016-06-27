@@ -369,17 +369,12 @@ Post = ghostBookshelf.Model.extend({
     tags: function tags() {
         return this
             .belongsToMany('Tag')
-            .query('where', 'name', 'not like', 'Rubric:%')
             .withPivot('sort_order')
             .query('orderBy', 'sort_order', 'ASC');
     },
 
-    rubrics: function rubrics() {
-        return this
-            .belongsToMany('Tag')
-            .query('where', 'name', 'like', 'Rubric:%')
-            .withPivot('sort_order')
-            .query('orderBy', 'sort_order', 'ASC');
+    rubric: function rubric() {
+        return this.belongsTo('Rubric', 'rubric_id');
     },
 
     fields: function fields() {
@@ -394,6 +389,11 @@ Post = ghostBookshelf.Model.extend({
         if (!options.columns || (options.columns && options.columns.indexOf('author') > -1)) {
             attrs.author = attrs.author || attrs.author_id;
             delete attrs.author_id;
+        }
+
+        if (!options.columns || (options.columns && options.columns.indexOf('rubric') > -1)) {
+            attrs.rubric = attrs.rubric || attrs.rubric_id;
+            delete attrs.rubric_id;
         }
 
         if (!options.columns || (options.columns && options.columns.indexOf('url') > -1)) {

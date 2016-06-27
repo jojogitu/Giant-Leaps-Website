@@ -3,6 +3,11 @@ function isPost(jsonData) {
         jsonData.hasOwnProperty('title') && jsonData.hasOwnProperty('slug');
 }
 
+function isRubric(jsonData) {
+    return jsonData.hasOwnProperty('name') && jsonData.hasOwnProperty('slug') &&
+        jsonData.hasOwnProperty('description');
+}
+
 function isTag(jsonData) {
     return jsonData.hasOwnProperty('name') && jsonData.hasOwnProperty('slug') &&
         jsonData.hasOwnProperty('description') && jsonData.hasOwnProperty('parent');
@@ -20,6 +25,7 @@ function isNav(jsonData) {
 
 module.exports = {
     isPost: isPost,
+    isRubric: isRubric,
     isTag: isTag,
     isUser: isUser,
     isNav: isNav

@@ -24,6 +24,7 @@ models = [
     'post',
     'refreshtoken',
     'role',
+    'rubric',
     'settings',
     'subscriber',
     'tag',

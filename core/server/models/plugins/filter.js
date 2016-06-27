@@ -113,6 +113,11 @@ filter = function filter(Bookshelf) {
                 options.groups.push('posts.id');
             }
 
+            if (joinTables && joinTables.indexOf('rubrics') > -1) {
+                this
+                    .query('join', 'rubrics', 'rubrics.id', '=', 'posts.rubric_id');
+            }
+
             if (joinTables && joinTables.indexOf('author') > -1) {
                 this
                     .query('join', 'users as author', 'author.id', '=', 'posts.author_id');

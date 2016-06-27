@@ -16,6 +16,7 @@ module.exports = {
         meta_title: {type: 'string', maxlength: 150, nullable: true},
         meta_description: {type: 'string', maxlength: 200, nullable: true},
         author_id: {type: 'integer', nullable: false},
+        rubric_id: {type: 'integer', nullable: true},
         created_at: {type: 'dateTime', nullable: false},
         created_by: {type: 'integer', nullable: false},
         updated_at: {type: 'dateTime', nullable: true},
@@ -124,6 +125,21 @@ module.exports = {
         post_id: {type: 'integer', nullable: false, unsigned: true, references: 'posts.id'},
         tag_id: {type: 'integer', nullable: false, unsigned: true, references: 'tags.id'},
         sort_order: {type: 'integer',  nullable: false, unsigned: true, defaultTo: 0}
+    },
+    rubrics: {
+        id: {type: 'increments', nullable: false, primary: true},
+        uuid: {type: 'string', maxlength: 36, nullable: false, validations: {isUUID: true}},
+        name: {type: 'string', maxlength: 150, nullable: false, validations: {matches: /^([^,]|$)/}},
+        slug: {type: 'string', maxlength: 150, nullable: false, unique: true},
+        description: {type: 'string', maxlength: 200, nullable: true},
+        image: {type: 'text', maxlength: 2000, nullable: true},
+        visibility: {type: 'string', maxlength: 150, nullable: false, defaultTo: 'public', validations: {isIn: [['public', 'internal']]}},
+        meta_title: {type: 'string', maxlength: 150, nullable: true},
+        meta_description: {type: 'string', maxlength: 200, nullable: true},
+        created_at: {type: 'dateTime', nullable: false},
+        created_by: {type: 'integer', nullable: false},
+        updated_at: {type: 'dateTime', nullable: true},
+        updated_by: {type: 'integer', nullable: true}
     },
     apps: {
         id: {type: 'increments', nullable: false, primary: true},
