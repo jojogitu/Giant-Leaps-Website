@@ -17,6 +17,7 @@ body_class = function (options) {
         context = options.data.root.context,
         post = this.post,
         tags = this.post && this.post.tags ? this.post.tags : this.tags || [],
+        rubric = this.post && this.post.rubric ? this.post.rubric : this.rubric || false,
         page = this.post && this.post.page ? this.post.page : this.page || false,
         activeTheme = options.data.root.settings.activeTheme,
         view;
@@ -36,6 +37,9 @@ body_class = function (options) {
     } else if (_.contains(context, 'tag') && this.tag) {
         classes.push('tag-template');
         classes.push('tag-' + this.tag.slug);
+    } else if (_.contains(context, 'rubric') && this.rubric) {
+        classes.push('rubric-template');
+        classes.push('rubric-' + this.rubric.slug);
     } else if (_.contains(context, 'author') && this.author) {
         classes.push('author-template');
         classes.push('author-' + this.author.slug);
@@ -45,6 +49,10 @@ body_class = function (options) {
 
     if (tags) {
         classes = classes.concat(tags.map(function (tag) { return 'tag-' + tag.slug; }));
+    }
+
+    if (rubric) {
+        classes = classes.concat('rubric-' + rubric.slug);
     }
 
     if (_.contains(context, 'paged')) {
