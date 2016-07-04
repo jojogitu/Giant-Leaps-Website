@@ -6,55 +6,45 @@
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
 
-<header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
-    <nav class="main-nav {{#if image}}overlay{{/if}} clearfix">
-        {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
-        {{#if @blog.navigation}}
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
-        {{/if}}
-    </nav>
+<header class="cd-header">
+  <div class="cd-logo">{{#if @blog.logo}}<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}"></a>{{/if}}</div>
+  <nav>
+			<ul class="cd-secondary-nav">
+        {{navigation}}
+      </ul>
+	</nav> <!-- secondary-nav -->
+
+  {{#if @blog.navigation}}<a class="cd-primary-nav-trigger" href="#">
+		<span class="cd-menu-text">Menu</span><span class="cd-menu-icon"></span>
+	</a> <!-- cd-primary-nav-trigger -->{{/if}}
+
+  <a class:""><span class="go-back icon-arrow-left"></span></a>
 </header>
 
-<main class="content" role="main">
+<nav>
+		<ul class="cd-primary-nav">
+      <li class="cd-label">Categories</li>
+      {{navigation}}
+    </ul>
+</nav>
+
+<section class="cover">
+  <section class="cd-intro {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}"></section>
+  <section class="post_header">
+      <div class="tag">{{tags separator=" "}}</div>
+      <h1>{{title}}</h1>
+      <div class="header_meta">{{#author}}by <a href="{{url}}">{{name}}</a> on {{/author}}<time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time></div>
+  </section>
+</section>
+
+<main class="cd-main-content">
     <article class="{{post_class}}">
 
-        <header class="post-header">
-            <h1 class="post-title">{{title}}</h1>
-            <section class="post-meta">
-                <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time> {{tags prefix=" on "}}
-            </section>
-        </header>
-
-        <section class="post-content">
+        <section class="cd-container">
             {{content}}
         </section>
 
         <footer class="post-footer">
-
-        {{!-- Everything inside the #author tags pulls data from the author --}}
-        {{#author}}
-
-            {{#if image}}
-            <figure class="author-image">
-                <a class="img" href="{{url}}" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></a>
-            </figure>
-            {{/if}}
-
-            <section class="author">
-                <h4><a href="{{url}}">{{name}}</a></h4>
-
-                {{#if bio}}
-                    <p>{{bio}}</p>
-                {{else}}
-                    <p>Read <a href="{{url}}">more posts</a> by this author.</p>
-                {{/if}}
-                <div class="author-meta">
-                    {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
-                    {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
-                </div>
-            </section>
-
-        {{/author}}
 
             <section class="share">
                 <h4>Share this post</h4>
