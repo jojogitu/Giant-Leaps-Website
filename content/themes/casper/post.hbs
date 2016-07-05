@@ -1,38 +1,8 @@
 {{!< default}}
 
-{{!-- The comment above "< default" means - insert everything in this file into
-    the {{{body}}} of the default.hbs template, containing the blog header/footer. --}}
-
-{{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
 
-<header class="cd-header">
-  <div class="cd-logo">{{#if @blog.logo}}<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}"></a>{{/if}}</div>
-  <nav>
-			<ul class="cd-secondary-nav">
-        {{navigation}}
-      </ul>
-	</nav> <!-- secondary-nav -->
-
-  {{#if @blog.navigation}}<a class="cd-primary-nav-trigger" href="#">
-		<span class="cd-menu-text">Menu</span><span class="cd-menu-icon"></span>
-	</a> <!-- cd-primary-nav-trigger -->{{/if}}
-
-  <a class:""><span class="go-back icon-arrow-left"></span></a>
-</header>
-
-<nav>
-		<ul class="cd-primary-nav">
-      <li class="cd-label" style="margin-top:0.5rem;">Explore Website</li>
-      {{navigation}}
-      <li class="cd-label">About Us</li>
-      <p>{{@blog.description}}</p>
-      <li class="cd-label">Subscribe to {{@blog.title}}</li>
-      {{>subscriber}}
-      <li class="cd-label">Contact</li>
-
-    </ul>
-</nav>
+{{>header}}
 
 <section class="cover">
   <section class="cd-intro {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}"></section>
@@ -50,12 +20,10 @@
             {{content}}
         </section>
 
-        {{>footer}}
-
+        {{>share}}
     </article>
 </main>
 
-{{!-- Links to Previous/Next posts --}}
 <aside class="read-next">
     {{#next_post}}
     <a class="read-next-story {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">

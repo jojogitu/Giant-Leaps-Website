@@ -845,7 +845,7 @@ font-size: 1rem;
   position: relative;
   width: 80%;
   max-width: 710px;
-  margin: 4rem auto 0;
+  margin: 0 auto 0;
   word-wrap: break-word;
   background: #fff;
 }
@@ -920,7 +920,7 @@ links remain at a fixed width the whole time */
   -webkit-align-items: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
-  height:400px;
+  height:auto;
 }
 .read-next-story {
   display: -webkit-box;
@@ -939,6 +939,12 @@ links remain at a fixed width the whole time */
   background: #222 no-repeat center center;
   background-size: cover;
   overflow: hidden;
+  padding:40px;
+}
+@media only screen and (min-width: 768px) {
+  .read-next-story {
+    padding:70px;
+  }
 }
 .read-next-story:hover:before {
   background: rgba(0,0,0,0.8);
