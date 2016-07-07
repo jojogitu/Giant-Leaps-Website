@@ -273,6 +273,9 @@ a {
     transition: color 0.3s ease;
     text-decoration: none;
 }
+a:hover {
+  border-bottom: #ffea00 1px solid;
+}
 p, ul, ol, dl {
     -webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
     -moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
@@ -291,6 +294,27 @@ ul ol, ol ul {
 li {
     margin: 0.4em 0;
 }
+blockquote {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 1.75em 0 1.75em -2.2em;
+    padding: 0 0 0 1.75em;
+    border-left: #4A4A4A 0.4em solid;
+}
+
+blockquote p {
+    margin: 0.8em 0;
+    font-style: italic;
+}
+blockquote small {
+    display: inline-block;
+    margin: 0.8em 0 0.8em 1.5em;
+    font-size: 0.9em;
+    color: #CCC;
+}
+blockquote small:before { content: "\2014 \00A0"; }
+blockquote cite { font-weight: 700; }
+blockquote cite a { font-weight: normal; }
 
 /* ==========================================================================
    3. Utilities - These things get used a lot
@@ -311,16 +335,32 @@ li {
    visibility: hidden;
    display: none;
 }
+.vertical {
+    display: table-cell;
+    vertical-align: middle;
+}
 
 /* ==========================================================================
 4. General - The main styles for the the theme
 ========================================================================== */
 
+.main-header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    background: #fff no-repeat center center;
+    overflow: hidden;
+}
+.main-header .inner {
+    width: 80%;
+    margin:8rem auto 5rem;
+}
 .cd-container {
   /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
   width: 90%;
   max-width: 768px;
   margin: 0 auto;
+  padding-top: 0.5rem;
 }
 .cd-container:after {
   content: "";
@@ -338,7 +378,6 @@ li {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  opacity:0.8;
 }
 @media only screen and (min-width: 768px) {
   .cd-header {
@@ -700,7 +739,7 @@ font-size: 1rem;
 }
 @media only screen and (min-width: 1170px) {
   .cover {
-  margin-bottom: 6em; }
+  margin-bottom: 4rem; }
 }
 .cd-intro {
   height: 530px;
@@ -709,6 +748,9 @@ font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   opacity:0.5;
+}
+.cd-intro.home {
+  height:300px;
 }
 .post_header {
   position: absolute;
@@ -755,8 +797,18 @@ font-size: 1rem;
   letter-spacing: normal;
   font-family: 'Montserrat', sans-serif;
 }
+.post_header.home h1{
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+}
+.post_header.home {
+  text-align: left;
+}
 @media only screen and (min-width: 768px) {
   .cd-intro {
+    height:450px;
+  }
+  .cd-intro.home {
     height:450px;
   }
   .post_header h1 {
@@ -765,14 +817,31 @@ font-size: 1rem;
     font-size: 4rem;
     padding:15px 80px 10px;
   }
+  .post_header.home h1{
+    font-size: 2.8rem;
+    padding:1.5rem 0 1rem;
+    line-height: 3.6rem;
+  }
 }
 @media only screen and (min-width: 1170px) {
   .cd-intro {
     height: 700px;
   }
+  .cd-intro.home {
+    height: 450px;
+  }
   .post_header h1 {
     line-height: 5.2rem;
     padding:15px 150px 10px;
+  }
+  .post_header.home h1{
+    padding:1.5rem 0 1rem;
+  }
+  .post.home:nth-child(3n+1) .post_header.home h1 {
+    font-size: 4rem;
+    line-height: 4.8rem;
+    padding:1.5rem 25rem 1rem 0;
+
   }
 }
 
@@ -780,6 +849,10 @@ font-size: 1rem;
   position: relative;
   z-index: 1;
 }
+.cd-main-content h1 { font-size: 4rem; }
+.cd-main-content h2 { font-size: 3.7rem; }
+.cd-main-content h3 { font-size: 3.5rem; }
+.cd-main-content h4 { font-size: 3.2rem; }
 .cd-main-content h1,
 .cd-main-content h2,
 .cd-main-content h3,
@@ -794,7 +867,7 @@ font-size: 1rem;
   margin: 1.5em 0;
   font-weight: 500;
 }
-.cd-main-content p:first-child:first-letter {
+.cd-main-content > .post > .cd-container > p:first-child:first-letter {
 font-size: 6.5rem;
 float: left;
 padding: 0 0.5rem 0.5rem;
@@ -811,7 +884,7 @@ font-family: "Montserrat",sans-serif;
   .cd-main-content p {
     font-size: 2rem;
   }
-  .cd-main-content p:first-child:first-letter {
+  .cd-main-content > .post > .cd-container > p:first-child:first-letter {
     font-size: 7.6rem;
     line-height: 7.8rem;
   }
@@ -850,7 +923,7 @@ font-family: "Montserrat",sans-serif;
   font-size: 5rem;
   letter-spacing: -1px;
   font-weight: 700;
-  font-family: "Droid Serif", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #fff;
 }
 .page-description {
@@ -891,7 +964,48 @@ font-family: "Montserrat",sans-serif;
   margin: auto;
   word-wrap: break-word;
   background: #fff;
+  border-radius: 10px;
 }
+.post.home {
+  background: #000;
+  border-radius: 0;
+  display: block;
+  width:100%;
+  max-width: 768px;
+  margin-bottom: 2.5%;
+}
+.post.home:nth-child(3n+1) {
+  height: 300px;
+  width: 100%;
+}
+.post.home:nth-child(3n+2) {
+  margin-right: 0;
+}
+@media only screen and (min-width: 768px) {
+  .post.home {
+    max-width: 1170px;
+  }
+  .post.home:nth-child(3n+1) {
+    height: 450px;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .post.home {
+    display: inline-block;
+    width:49%;
+    margin-bottom: 1.75%;
+  }
+  .post.home:nth-child(3n+1) {
+    height: 600px;
+  }
+  .post.home:nth-child(3n+2) {
+    margin-right: 1.75%;
+  }
+  .post.home:nth-child(3n+1) .cd-intro.home {
+    height:600px;
+  }
+}
+
 
 /* ==========================================================================
 5. Single Post - When you click on an individual post
@@ -900,8 +1014,8 @@ font-family: "Montserrat",sans-serif;
 /* The author credit area after the post */
 .post-footer {
   position: relative;
-  padding: 1rem 0 1rem 0;
-  border-top: #EBF2F6 1px solid;
+  padding: 0 0 1rem 0;
+  margin-top: 1rem;
   margin-bottom: 5em;
   display: block;
 }
@@ -931,11 +1045,10 @@ Doing it like this means it's easier for the author bio
 to be flexible at smaller screen sizes while the share
 links remain at a fixed width the whole time */
 .post-footer .share {
-  position: absolute;
-  right: 0;
+  position: relative;
+  padding-left: 2rem;
 }
 .post-footer .share a {
-
   font-size: 1.5rem;
   display: inline-block;
   margin: 0.5rem 1.6rem 0 0;
@@ -944,9 +1057,6 @@ links remain at a fixed width the whole time */
   text-decoration: none;
   border: #BBC7CC 1px solid;
   border-radius: 5px;
-}
-.post-footer .share a:hover {
-
 }
 .post-footer .share .icon-twitter:hover {
   color: #fff;
@@ -965,6 +1075,8 @@ links remain at a fixed width the whole time */
 6. Sidebar - Latest Post - Ads - Rubriks
 ========================================================================== */
 
+.insta h5,
+.sidebar-tags h5,
 .recent-posts h5 {
   font-weight: 600;
   font-size: 1.6rem;
@@ -984,15 +1096,26 @@ links remain at a fixed width the whole time */
   overflow: hidden;
   white-space: nowrap;*/
 }
-.recent-posts a:hover {
-  border-bottom: #ffea00 1px solid;
-}
+/*---tanggal----*/
 .recent-posts li:nth-child(2n+0) {
   font-size: 1rem;
   font-family: 'Montserrat', sans-serif;
   color: #ccc;
   margin-top: -0.25em;
-  margin-bottom: 1.5em; }
+  margin-bottom: 1.5em;
+}
+.sidebar-tags ul{
+  display: inline-block;
+}
+.sidebar-tags li a{
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 2.8rem;
+  border: #000 1px solid;
+  padding: 4px;
+  text-transform: uppercase;
+}
 
 /* ==========================================================================
 7. Read More - Next/Prev Post Links
@@ -1192,9 +1315,6 @@ links remain at a fixed width the whole time */
   text-decoration: none;
   font-weight: bold;
 }
-.site-footer a:hover {
-  border-bottom: #bbc7cc 1px solid;
-}
 .poweredby {
   display: block;
   width: 55%;
@@ -1213,6 +1333,9 @@ links remain at a fixed width the whole time */
 
 @media only screen and (max-width: 900px) {
 
+  blockquote {
+      margin-left: 0;
+  }
   .page-title {
       font-size: 4rem;
       letter-spacing: -1px;
@@ -1293,7 +1416,7 @@ links remain at a fixed width the whole time */
       font-size: 1.6rem;
   }
   .post-footer {
-      padding: 2rem 0 1rem 0;
+      padding: 1rem 0 2rem 0;
       text-align: center;
       margin-bottom: 2rem;
       /*height: auto;*/
@@ -1364,7 +1487,7 @@ links remain at a fixed width the whole time */
 /* For devices larger than 400px */
 @media (min-width: 320px) {
   .container {
-    width: 85%;
+    width: 95%;
     padding: 0; }
   .column,
   .columns {
