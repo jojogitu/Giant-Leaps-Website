@@ -1,0 +1,9 @@
+<section class="sidebar-tags"><h5>Tags</h5>
+  <ul>
+      {{#get "tags" limit="all"}}
+        {{#foreach tags}}
+          <li><a href="{{url}}">{{name}}</a></li>
+        {{/foreach}}
+      {{/get}}
+  </ul>
+</div>
