@@ -1,11 +1,13 @@
 $(document).ready(function() {
     //This is set to 2 since the posts already loaded should be page 1
-    nextPage = 2;
+    nextPage = 7;
     //Set this to match the pagination used in your blog
     pagination = 1;
 
     //on button click
     $('#load-posts').click(function() {
+      for (var i = 0; i < 3; i++) {
+        nextPage += i;
         $.ajax({
             //go grab the pagination number of posts on the next page and include the tags
             url: ghost.url.api("posts") + '&include=tags&limit=' + pagination + '&page=' + nextPage,
@@ -32,43 +34,45 @@ $(document).ready(function() {
         }).fail(function(err) {
             console.log(err);
         });
+      }
     })
 
     function insertPost(postData, authorData) {
         //start the inserting of the html
-        var postInfo = '<article class="post">\
-                <header class="post_header">\
-                    <h2 class="post-title"><a href="' + postData.url + '">' + postData.title + '</a></h2>\
-                </header>\
-                <section class="post-excerpt">\
-                    <p>' + postData.html + '<a class="read-more" href="' + postData.url + '">& raquo; < /a></p > \
-            < /section>\ < footer class = "post-meta" > '
+        var postInfo = '<article class="post home">\
+                    <a href="' + postData.url + '">'
 
-        //if no author image, dont include it
-        if (authorData.Image != null) {
-            postInfo += '<img class="author-thumb" src="' + authorData.image + '" alt="' + authorData.name + '" nopin="nopin" />'
+        if (postData.Image != null) {
+            postInfo += '<section class="cd-intro home" style="background-image: url(' + postData.Image + ')"></section>'
+        } else {
+            postInfo += '<section class="cd-intro home no-cover"></section>'
         }
+
+        postInfo += '</a>\
+                    <section class="post_header home">\
+                      <div class="tag">'
 
         //if there are tags, add each of them to the post
         if (postData.tags.length > 0) {
             for (i = 0; i < postData.tags.length; i++) {
                 console.log(postData.tags[i]);
-                postInfo += authorData.name + ' on ' + '<a href="/tag/' + postData.tags[i].slug + '">' + postData.tags[i].name + "</a> ";
+                postInfo += '<a href="/tag/' + postData.tags[i].slug + '">' + postData.tags[i].name + "</a> ";
             }
-        } else {
-            //if no tags, just add the author name
-            postInfo += authorData.name;
         }
 
         //Finish off the html with the time
         //The format for the time will be different, you will have to figure this out
-        postInfo += '<time class="post-date" datetime="' + postData.published_at + '">' + postData.published_at + '</time>\
-                </footer>\
+        postInfo += '</div>\
+                  <h1><a href="' + postData.url + '">' + postData.title + '</a></h1>\
+                  <div class = "header_meta" >\
+                    by <a href="' + authorData.url + '">' + authorData.name + '</a> on ' + '<time datetime="' + postData.published_at + '">' + postData.published_at + '</time>\
+                  </div>\
+                </section>\
             </article>'
 
         //Append the html to the content of the blog
-        $('.container').append(postInfo);
+        $('.container.loop').append(postInfo);
         //incriment next page so it will get the next page of posts if hit again.
-        nextPage += 6;
+        nextPage += 1;
     }
 });
