@@ -25,7 +25,8 @@
                     "status": "published",
                     "language": "en_US",
                     "meta_title": null,
-                    "meta_description": null
+                    "meta_description": null,
+                    "rubric_id": 1
                 }
             ]
         },
@@ -205,6 +206,31 @@
                     "object_type": "tag"
                 },
                 {
+                    "name": "Browse rubrics",
+                    "action_type": "browse",
+                    "object_type": "rubric"
+                },
+                {
+                    "name": "Read rubrics",
+                    "action_type": "read",
+                    "object_type": "rubric"
+                },
+                {
+                    "name": "Edit rubrics",
+                    "action_type": "edit",
+                    "object_type": "rubric"
+                },
+                {
+                    "name": "Add rubrics",
+                    "action_type": "add",
+                    "object_type": "rubric"
+                },
+                {
+                    "name": "Delete rubrics",
+                    "action_type": "destroy",
+                    "object_type": "rubric"
+                },
+                {
                     "name": "Browse themes",
                     "action_type": "browse",
                     "object_type": "theme"
@@ -323,6 +349,7 @@
                     "setting": "all",
                     "slug": "all",
                     "tag": "all",
+                    "rubric": "all",
                     "theme": "all",
                     "user": "all",
                     "role": "all",
@@ -334,6 +361,7 @@
                     "setting": ["browse", "read"],
                     "slug": "all",
                     "tag": "all",
+                    "rubric": "all",
                     "user": "all",
                     "role": "all",
                     "client": "all",
@@ -344,6 +372,7 @@
                     "setting": ["browse", "read"],
                     "slug": "all",
                     "tag": ["browse", "read", "add"],
+                    "rubric": ["browse", "read", "add"],
                     "user": ["browse", "read"],
                     "role": ["browse"],
                     "client": "all",

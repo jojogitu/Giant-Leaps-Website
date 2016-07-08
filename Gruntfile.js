@@ -70,7 +70,11 @@ var _              = require('lodash'),
                     options: {
                         livereload: true
                     }
-                }
+                },
+                sass: {
+                    files: 'content/themes/**/assets/sass/**/*.scss',
+                    tasks: ['sass:dev']
+                },
             },
 
             // ### grunt-express-server
@@ -392,6 +396,42 @@ var _              = require('lodash'),
                     },
                     files: {
                         'core/shared/ghost-url.min.js': 'core/shared/ghost-url.js'
+                    }
+                }
+            },
+
+            sass: {
+                dev: {
+                    options: {
+                        style: 'expanded',
+                        // tell Sass to look in the Bootstrap stylesheets directory when compiling
+                        loadPath: 'node_modules/bootstrap-sass/assets/stylesheets',
+                        // loadPath: 'node_modules/foundation-sites/scss'
+                    },
+                    files: {
+                        // the first path is the output and the second is the input
+                        'content/themes/giantleaps/assets/css/screen.css': 'content/themes/giantleaps/assets/sass/screen.scss'
+                    }
+                },
+                dist: {
+                    options: {
+                        style: 'compressed',
+                        loadPath: 'node_modules/bootstrap-sass/assets/stylesheets',
+                        // loadPath: 'node_modules/foundation-sites/scss'
+                    },
+                    files: {
+                        'content/themes/giantleaps/assets/css/screen.css' : 'content/themes/giantleaps/assets/sass/screen.scss',
+                    }
+                }
+            },
+
+            cssmin: {
+                dist: {
+                    options: {
+                        banner: '/*! Giant Leaps by Joshua J. Damanik | MIT Licensed */'
+                    },
+                    files: {
+                        'content/themes/jojogitu2/assets/css/screen.min.css': 'content/themes/jojogitu2/assets/css/screen.css'
                     }
                 }
             }
@@ -828,7 +868,7 @@ var _              = require('lodash'),
         //
         // Note that the current implementation of watch only works with casper, not other themes.
         grunt.registerTask('dev', 'Dev Mode; watch files and restart server on changes',
-           ['bgShell:ember', 'express:dev', 'watch']);
+           ['bgShell:ember', 'express:dev', 'sass:dev', 'watch']);
 
         // ### Release
         // Run `grunt release` to create a Ghost release zip file.

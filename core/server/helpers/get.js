@@ -14,12 +14,13 @@ var _               = require('lodash'),
     get;
 
 // Endpoints that the helper is able to access
-resources =  ['posts', 'tags', 'users'];
+resources =  ['posts', 'tags', 'users', 'rubrics'];
 
 // Short forms of paths which we should understand
 pathAliases     = {
     'post.tags': 'post.tags[*].slug',
-    'post.author': 'post.author.slug'
+    'post.author': 'post.author.slug',
+    'post.rubrics' : 'post.rubrics.slug'
 };
 
 /**

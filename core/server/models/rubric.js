@@ -104,10 +104,8 @@ Rubric = ghostBookshelf.Model.extend({
         var id = options.id;
         options = this.filterOptions(options, 'destroy');
 
-        return this.forge({id: id}).fetch({withRelated: ['posts']}).then(function destroyRubricsAndPost(rubric) {
-            return rubric.related('posts').detach().then(function destroyRubrics() {
-                return rubric.destroy(options);
-            });
+        return this.forge({id: id}).fetch({withRelated: ['posts']}).then(function destroyRubrics(rubric) {
+            return rubric.destroy(options);
         });
     }
 });

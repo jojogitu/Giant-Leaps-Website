@@ -120,7 +120,8 @@ db = {
         function deleteContent() {
             var collections = [
                 models.Post.findAll(queryOpts),
-                models.Tag.findAll(queryOpts)
+                models.Tag.findAll(queryOpts),
+                models.Rubric.findAll(queryOpts)
             ];
 
             return Promise.each(collections, function then(Collection) {

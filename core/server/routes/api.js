@@ -65,6 +65,14 @@ apiRoutes = function apiRoutes(middleware) {
     router.put('/tags/:id', authenticatePrivate, api.http(api.tags.edit));
     router.del('/tags/:id', authenticatePrivate, api.http(api.tags.destroy));
 
+    // ## Tags
+    router.get('/rubrics', authenticatePublic, api.http(api.rubrics.browse));
+    router.get('/rubrics/:id', authenticatePublic, api.http(api.rubrics.read));
+    router.get('/rubrics/slug/:slug', authenticatePublic, api.http(api.rubrics.read));
+    router.post('/rubrics', authenticatePrivate, api.http(api.rubrics.add));
+    router.put('/rubrics/:id', authenticatePrivate, api.http(api.rubrics.edit));
+    router.del('/rubrics/:id', authenticatePrivate, api.http(api.rubrics.destroy));
+
     // ## Subscribers
     router.get('/subscribers', middleware.api.labs.subscribers, authenticatePrivate, api.http(api.subscribers.browse));
     router.get('/subscribers/csv', middleware.api.labs.subscribers, authenticatePrivate, api.http(api.subscribers.exportCSV));

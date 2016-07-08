@@ -34,6 +34,7 @@ slugs = {
         allowedTypes = {
             post: dataProvider.Post,
             tag: dataProvider.Tag,
+            rubric: dataProvider.Rubric,
             user: dataProvider.User,
             app: dataProvider.App
         };

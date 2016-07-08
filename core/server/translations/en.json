@@ -340,6 +340,9 @@
             "tags": {
                 "tagNotFound": "Tag not found."
             },
+            "rubrics": {
+                "rubricNotFound": "Rubric not found."
+            },
             "themes": {
                 "noPermissionToBrowseThemes": "You do not have permission to browse themes.",
                 "noPermissionToEditThemes": "You do not have permission to edit themes.",

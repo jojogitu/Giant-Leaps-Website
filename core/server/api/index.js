@@ -68,7 +68,7 @@ cacheInvalidationHeader = function cacheInvalidationHeader(req, result) {
         wasPublishedUpdated;
 
     if (['POST', 'PUT', 'DELETE'].indexOf(method) > -1) {
-        if (['settings', 'users', 'db', 'tags'].indexOf(endpoint) > -1) {
+        if (['settings', 'users', 'db', 'tags', 'rubrics'].indexOf(endpoint) > -1) {
             return INVALIDATE_ALL;
         } else if (endpoint === 'posts') {
             if (method === 'DELETE') {
@@ -122,6 +122,9 @@ locationHeader = function locationHeader(req, result) {
         } else if (result.hasOwnProperty('tags')) {
             newObject = result.tags[0];
             location = apiRoot + '/tags/' + newObject.id + '/';
+        } else if (result.hasOwnProperty('rubrics')) {
+            newObject = result.rubrics[0];
+            location = apiRoot + '/rubrics/' + newObject.id + '/';
         }
     }
 
