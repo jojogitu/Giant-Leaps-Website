@@ -18,6 +18,7 @@ Table of Contents
 11. Media Queries (Tablet)
 12. Media Queries (Mobile)
 13. Skeleton
+14. Menu
 
 */
 
@@ -810,6 +811,9 @@ font-size: 1rem;
 .post_header.home {
   text-align: left;
 }
+.post_header.home > h1 > a {
+  color: #fff;
+}
 @media only screen and (min-width: 768px) {
   .cd-intro {
     height:450px;
@@ -1012,6 +1016,12 @@ font-family: "Montserrat",sans-serif;
   }
 }
 
+#load-posts {
+  font-family: "Montserrat", sans-serif;
+  padding: 20px 20px;
+  border-radius: 100%;
+}
+
 
 /* ==========================================================================
 5. Single Post - When you click on an individual post
@@ -1078,7 +1088,7 @@ links remain at a fixed width the whole time */
 }
 
 /* ==========================================================================
-6. Sidebar - Latest Post - Ads - Rubriks
+6. Sidebar - Latest Post - Insta - Tags
 ========================================================================== */
 
 .insta h5,

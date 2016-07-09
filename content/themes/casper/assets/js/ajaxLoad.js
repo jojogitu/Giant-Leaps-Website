@@ -28,7 +28,7 @@ $(document).ready(function() {
             });
         }).done(function(data) {
             //If you are on the last post, hide the load more button
-            if (nextPage == data.meta.pagination.total) {
+            if (nextPage >= data.meta.pagination.total) {
                 $('#load-posts').hide();
             }
         }).fail(function(err) {
@@ -65,7 +65,7 @@ $(document).ready(function() {
         postInfo += '</div>\
                   <h1><a href="' + postData.url + '">' + postData.title + '</a></h1>\
                   <div class = "header_meta" >\
-                    by <a href="' + authorData.url + '">' + authorData.name + '</a> on ' + '<time datetime="' + postData.published_at + '">' + postData.published_at + '</time>\
+                    by <a href="/author/' + authorData.url + '">' + authorData.name + '</a> on ' + '<time datetime="' + postData.published_at + '">' + postData.published_at + '</time>\
                   </div>\
                 </section>\
             </article>'
