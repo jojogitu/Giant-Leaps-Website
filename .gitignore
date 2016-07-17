@@ -62,10 +62,7 @@ CHANGELOG.md
 
 /config.js
 
-# Built asset files
-/core/built
-/core/server/views/default.hbs
-/core/shared/ghost-url.min.js
-
 # Coverage reports
 coverage.html
+
+.sass-cache

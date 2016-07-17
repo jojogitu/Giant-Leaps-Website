@@ -72,7 +72,7 @@ var _              = require('lodash'),
                     }
                 },
                 sass: {
-                    files: 'content/themes/**/assets/sass/**/*.scss',
+                    files: 'content/themes/**/assets/**/*.scss',
                     tasks: ['sass:dev']
                 },
             },
@@ -410,31 +410,22 @@ var _              = require('lodash'),
                     },
                     files: {
                         // the first path is the output and the second is the input
-                        'content/themes/giantleaps/assets/css/screen.css': 'content/themes/giantleaps/assets/sass/screen.scss'
+                        
+                        // 'content/themes/amburadul/assets/css/style.css': 'content/themes/amburadul/assets/scss/style.scss'
+                        'content/themes/giantleaps/assets/css/screen.css': 'content/themes/giantleaps/assets/scss/screen.scss'
                     }
                 },
                 dist: {
                     options: {
                         style: 'compressed',
-                        loadPath: 'node_modules/bootstrap-sass/assets/stylesheets',
+                        // loadPath: 'node_modules/bootstrap-sass/assets/stylesheets',
                         // loadPath: 'node_modules/foundation-sites/scss'
                     },
                     files: {
-                        'content/themes/giantleaps/assets/css/screen.css' : 'content/themes/giantleaps/assets/sass/screen.scss',
+                        'content/themes/giantleaps/assets/css/screen.css' : 'content/themes/giantleaps/assets/scss/screen.scss',
                     }
                 }
             },
-
-            cssmin: {
-                dist: {
-                    options: {
-                        banner: '/*! Giant Leaps by Joshua J. Damanik | MIT Licensed */'
-                    },
-                    files: {
-                        'content/themes/jojogitu2/assets/css/screen.min.css': 'content/themes/jojogitu2/assets/css/screen.css'
-                    }
-                }
-            }
         };
 
         // Load the configuration

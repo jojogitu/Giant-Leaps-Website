@@ -1,6 +1,6 @@
 var _      = require('lodash'),
     errors = require('../../errors'),
-    gql    = require('ghost-gql'),
+    gql    = require('./ghost-gql'),
     i18n   = require('../../i18n'),
     filter,
     filterUtils;
