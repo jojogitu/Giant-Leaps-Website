@@ -5,7 +5,7 @@
 var express     = require('express'),
     hbs         = require('express-hbs'),
     compress    = require('compression'),
-    uuid        = require('node-uuid'),
+    uuid        = require('uuid'),
     Promise     = require('bluebird'),
     i18n        = require('./i18n'),
     api         = require('./api'),
